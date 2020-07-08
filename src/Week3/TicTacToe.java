@@ -1,5 +1,6 @@
 package Week3;
 
+import java.util.Arrays;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -20,6 +21,7 @@ import java.util.Scanner;
             populateEmptyBoard();
             System.out.println("Welcome to Tic Tac Toe");
             System.out.println("X's go first. Enter a slot number");
+            printBoard();
 
             while (winner == null) {
                 try {
@@ -34,9 +36,10 @@ import java.util.Scanner;
                                 turn = "O";
                             else
                                 turn = "X";
-
+                              printBoard();
                             winner = checkWinner();
-                        } else {
+                        }
+                        else {
                             System.out.println("Invalid input. Re-enter slot number");
                             continue;
                         }
@@ -48,14 +51,13 @@ import java.util.Scanner;
 
                 } catch (InputMismatchException e) {
                     System.out.println("Invalid input. Re-enter slot number");
-                    continue;
-
+                    sc.nextLine();
                 }
 
 
             }
 
-            if winner.equals("draw")
+            if (winner.equals("draw"))
             {System.out.println("Game is a Draw!");}
             else
             {System.out.println("The winner is " + winner);}
@@ -67,9 +69,9 @@ import java.util.Scanner;
         }
 
         static String checkWinner() {
-            for(int j=0; j<8; j++){
+            for (int j = 0; j < 8; j++) {
                 String line = null;
-                switch(j) {
+                switch (j) {
                     case 0:
                         line = board[0] + board[1] + board[2];
                         break;
@@ -104,21 +106,37 @@ import java.util.Scanner;
                         break;
                 }
 
-                    if (line.equals("XXX"))
-                        return "X";
-                    else if (line.equals("OOO"))
-                        return "O";
+                if (line.equals("XXX"))
+                    return "X";
+                else if (line.equals("OOO"))
+                    return "O";
+            }
 // tie or game not over
 
-                if(int a =0; a<9; a++){
+                for (int a = 0; a < 9; a++) {
+                    if (Arrays.asList(board).contains(String.valueOf(a + 1)))
+                    { break;}
+
+                    else if (a == 8)
+                        return "draw";
 
                 }
+                System.out.println(turn + "'s turn. Enter a slot number");
+                return null;
 
-            }
+
 
         }
 
         static void printBoard(){
+            System.out.println("/---|---|---|\\");
+            System.out.println("|"+board[0]+"|"+board[1]+"|"+board[2]+"|");
+            System.out.println("|----------|");
+            System.out.println("|"+board[3]+"|"+board[4]+"|"+board[5]+"|");
+            System.out.println("|----------|");
+            System.out.println("|"+board[6]+"|"+board[7]+"|"+board[8]+"|");
+            System.out.println("|----------|");
+            System.out.println("/---|---|---|\\");
     }
 
 }
