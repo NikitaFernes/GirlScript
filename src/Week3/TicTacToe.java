@@ -44,7 +44,7 @@ import java.util.Scanner;
                             continue;
                         }
                     } else {
-                        System.out.println("Invalid input");
+                        System.out.println("Invalid input. Re-enter slot number");
                         continue;
                     }
 
